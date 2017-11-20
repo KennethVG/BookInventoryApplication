@@ -1,0 +1,78 @@
+<div class="container">
+
+  <br>
+
+  <form (ngSubmit)="onSubmit()" #bookForm="ngForm">
+    <div class="form-group">
+      <label for="title">Titel:</label>
+      <input type="text" [(ngModel)]="mybook.title" class="form-control" name="title" id="title"
+             placeholder="Bv: Dossier K" required>
+    </div>
+
+    <div class="form-group">
+      <label for="author">Auteur:</label>
+      <input type="text" [(ngModel)]="mybook.author" class="form-control" name="author" id="author"
+             placeholder="Bv: Jef Geeraerts" required>
+    </div>
+
+    <div class="form-group">
+      <label for="author">Uitgeverij:</label>
+      <input type="text" [(ngModel)]="mybook.publisher" class="form-control" name="publisher" id="publisher"
+             placeholder="Bv: Van In">
+    </div>
+
+    <div class=" form-check">
+      <label>Genre: </label> <br>
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="thriller" id="thriller" value="THRILLER"
+               [(ngModel)]="mybook.genre">
+        Thriller
+      </label>
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="comedy" id="comedy" value="COMEDY"
+               [(ngModel)]="mybook.genre">
+        Komedie
+      </label>
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="roman" id="roman" value="ROMAN" [(ngModel)]="mybook.genre">
+        Roman
+      </label>
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="comic" id="comic" value="COMIC" [(ngModel)]="mybook.genre">
+        Strip
+      </label>
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="nonfiction" id="nonfiction" value="NON-FICTION"
+               [(ngModel)]="mybook.genre">
+        Non-fictie
+      </label>
+    </div>
+
+    <div class="form-check">
+      <label>Taal: </label> <br>
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="dutch" id="dutch" value="DUTCH"
+               [(ngModel)]="mybook.language">
+        Nederlands
+      </label>
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="english" id="english" value="ENGLISH"
+               [(ngModel)]="mybook.language">
+        Engels
+      </label>
+    </div>
+
+    <div class="form-group">
+      <label for="pages">Aantal pagina's:</label>
+      <input type="number" [(ngModel)]="mybook.numberOfPages" class="form-control" name="pages" id="pages"
+             placeholder="Bv: 156">
+    </div>
+
+    <div class="form-group">
+      <label for="isbn">ISBN:</label>
+      <input type="text" [(ngModel)]="mybook.isbn" class="form-control" name="isbn" id="isbn" placeholder="isbn">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Boek toevoegen</button>
+  </form>
+</div>

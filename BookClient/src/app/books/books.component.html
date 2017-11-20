@@ -1,0 +1,32 @@
+<div class="container">
+
+  <br>
+  <form (submit)="searchBooks()" class="form-inline justify-content-end">
+    <div class="form-row">
+      <div class="col">
+        <input  [(ngModel)]="keyword" type="text" name="search" id="search" class="form-control" placeholder="zoekterm" required>
+      </div>
+      <div class="col">
+        <button type="submit" class="btn btn-primary">Zoeken</button>
+      </div>
+    </div>
+
+  </form>
+
+  <br>
+
+  <table class="table table-hover">
+    <tbody>
+    <tr *ngFor="let mybook of books">
+      <td (click)="detailBook(mybook)" class="data-book">{{mybook.id}}</td>
+      <td (click)="detailBook(mybook)" class="data-book">{{mybook.title}}</td>
+      <td (click)="detailBook(mybook)" class="data-book">{{mybook.author}}</td>
+      <td>
+        <button type="button" class="btn btn-primary" (click)="editBook(mybook)">wijzig</button>&nbsp;&nbsp;
+        <button type="button" class="btn btn-danger" (click)="deleteBook(mybook.id)">verwijder</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+</div>

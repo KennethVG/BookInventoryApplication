@@ -1,0 +1,8 @@
+button, .data-book{
+  cursor: pointer;
+}
+
+.table {
+  margin: auto;
+  width: 50% !important;
+}
