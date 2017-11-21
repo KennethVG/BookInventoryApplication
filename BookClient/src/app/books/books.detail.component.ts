@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Book} from './book';
 import {Router} from '@angular/router';
-import {BookComponent} from './books.component';
-import {BookService} from "./books.service";
+import {BookService} from './books.service';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-detail-book',
@@ -13,10 +13,14 @@ export class BooksDetailComponent implements OnInit {
 
   detailBook: Book;
 
-  constructor(private bookservice: BookService, private router: Router) {
+  constructor(private bookservice: BookService, private router: Router, private location: Location) {
   }
 
   ngOnInit(): void {
     this.detailBook = this.bookservice.selectedBook;
+  }
+
+  goBack() {
+    this.location.back();
   }
 }

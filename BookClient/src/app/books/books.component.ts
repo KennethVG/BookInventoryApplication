@@ -28,7 +28,7 @@ export class BookComponent implements OnInit {
     console.log('BookComponent findAllBooks() methode');
     this.bookservice.findAllBooks().subscribe(data => {
       for (const b of data) {
-        const aBook = new Book(b.title, b.author, b.id);
+        const aBook = new Book(b.title, b.author, b.id, b.publisher, b.genre, b.language, b.isbn, b.numberOfPages);
         this.books.push(aBook);
       }
     });
