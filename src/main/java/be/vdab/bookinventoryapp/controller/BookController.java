@@ -40,6 +40,7 @@ public class BookController {
         return ResponseEntity.ok(service.addBook(book));
     }
 
+    @CrossOrigin(CorsConfiguration.ALL)
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity deleteBook(@PathVariable Integer id) {
         return ResponseEntity.ok(service.deleteBookById(id));
@@ -50,7 +51,8 @@ public class BookController {
         return ResponseEntity.ok(service.findByAuthor(author));
     }
 
-    @RequestMapping(value = "/keyword/{keyword}/", method = RequestMethod.GET)
+    @CrossOrigin(CorsConfiguration.ALL)
+    @RequestMapping(value = "/keyword/{keyword}", method = RequestMethod.GET)
     public ResponseEntity findByKeyword(@PathVariable String keyword) {
         return ResponseEntity.ok(service.findByKeyword(keyword));
     }
@@ -70,7 +72,7 @@ public class BookController {
         return ResponseEntity.ok(service.findByEbook(ebook));
     }
 
-
+    @CrossOrigin(CorsConfiguration.ALL)
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public ResponseEntity updateBook(@RequestBody Book book) {
         return ResponseEntity.ok(service.updateBook(book));

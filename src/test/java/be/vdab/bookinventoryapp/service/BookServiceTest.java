@@ -3,6 +3,7 @@ package be.vdab.bookinventoryapp.service;
 import be.vdab.bookinventoryapp.BookInventoryApplication;
 import be.vdab.bookinventoryapp.model.Book;
 import be.vdab.bookinventoryapp.service.BookService;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = BookInventoryApplication.class)
+@Ignore
 public class BookServiceTest {
 
     @Autowired
