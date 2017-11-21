@@ -435,9 +435,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 // const UPDATE_URL = 'http://projecten.oak3.academy/BookApp/books/update';
 // const SEARCH_URL = 'http://projecten.oak3.academy/BookApp/books/keyword/';
 // DEVELOPMENT
-var URL = 'http://localhost:8085/books';
-var UPDATE_URL = 'http://localhost:8085/books/update';
-var SEARCH_URL = 'http://localhost:8085/books/keyword/';
+// const URL = 'http://localhost:8085/books';
+// const UPDATE_URL = 'http://localhost:8085/books/update';
+// const SEARCH_URL = 'http://localhost:8085/books/keyword/';
+// HEROKU
+var URL = 'https://guarded-escarpment-87523.herokuapp.com/books';
+var UPDATE_URL = 'https://guarded-escarpment-87523.herokuapp.com/books/update';
+var SEARCH_URL = 'https://guarded-escarpment-87523.herokuapp.com/books/keyword/';
 var BookService = (function () {
     function BookService(http) {
         this.http = http;
