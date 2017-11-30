@@ -25,7 +25,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "a{\r\n  cursor: pointer;\r\n}\r\n\r\na.active{\r\n  background-color: cornsilk;\r\n}\r\n", ""]);
+exports.push([module.i, "a.active{\r\n  background-color: cornsilk;\r\n}\r\n", ""]);
 
 // exports
 
@@ -211,15 +211,14 @@ var BookAddComponent = (function () {
     function BookAddComponent(bookservice, router) {
         this.bookservice = bookservice;
         this.router = router;
+        // Default values --> Undefined not possible in html.
         this.mybook = new __WEBPACK_IMPORTED_MODULE_2__book__["a" /* Book */]('', '', 0, '', 'THRILLER', 'DUTCH', '', 0);
     }
     BookAddComponent.prototype.onSubmit = function () {
-        console.log('BookAddComponent: onSubmit() method');
         this.addBook(this.mybook);
         this.router.navigate(['books']);
     };
     BookAddComponent.prototype.addBook = function (book) {
-        console.log('BookAddComponent: addBook() method');
         this.bookservice.addBook(book).subscribe();
     };
     BookAddComponent.prototype.getButtonStyle = function () {
@@ -263,7 +262,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/books/books.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\r\n\r\n  <br>\r\n  <form (submit)=\"searchBooks()\" class=\"form-inline justify-content-end\">\r\n    <div class=\"form-row\">\r\n      <div class=\"col\">\r\n        <input  [(ngModel)]=\"keyword\" type=\"text\" name=\"search\" id=\"search\" class=\"form-control\" placeholder=\"zoekterm\" required>\r\n      </div>\r\n      <div class=\"col\">\r\n        <button type=\"submit\" class=\"btn btn-primary\">Zoeken</button>\r\n      </div>\r\n    </div>\r\n\r\n  </form>\r\n\r\n  <br>\r\n\r\n  <table class=\"table table-hover\">\r\n    <tbody>\r\n    <tr *ngFor=\"let mybook of books\">\r\n      <td (click)=\"detailBook(mybook)\" class=\"data-book\">{{mybook.id}}</td>\r\n      <td (click)=\"detailBook(mybook)\" class=\"data-book\">{{mybook.title}}</td>\r\n      <td (click)=\"detailBook(mybook)\" class=\"data-book\">{{mybook.author}}</td>\r\n      <td>\r\n        <button type=\"button\" class=\"btn btn-primary\" (click)=\"editBook(mybook)\">wijzig</button>&nbsp;&nbsp;\r\n        <button type=\"button\" class=\"btn btn-danger\" (click)=\"deleteBook(mybook.id)\">verwijder</button>\r\n      </td>\r\n    </tr>\r\n    </tbody>\r\n  </table>\r\n\r\n</div>\r\n"
+module.exports = "<div class=\"container\">\r\n  <br>\r\n  <form (submit)=\"searchBooks()\" class=\"form-inline justify-content-end\">\r\n    <div class=\"form-row\">\r\n      <div class=\"col\">\r\n        <input  [(ngModel)]=\"keyword\" type=\"text\" name=\"search\" id=\"search\" class=\"form-control\" placeholder=\"zoekterm\" required>\r\n      </div>\r\n      <div class=\"col\">\r\n        <button type=\"submit\" class=\"btn btn-primary\">Zoeken</button>\r\n      </div>\r\n    </div>\r\n\r\n  </form>\r\n\r\n  <br>\r\n  <table class=\"table table-hover\">\r\n    <tbody>\r\n    <tr *ngFor=\"let mybook of books\">\r\n      <!--<td (click)=\"detailBook(mybook)\" class=\"data-book\">{{mybook.id}}</td>-->\r\n      <td (click)=\"detailBook(mybook)\" class=\"data-book\">{{mybook.title}}</td>\r\n      <td (click)=\"detailBook(mybook)\" class=\"data-book\">{{mybook.author}}</td>\r\n      <td>\r\n        <button type=\"button\" class=\"btn btn-primary\" (click)=\"editBook(mybook)\">wijzig</button>&nbsp;&nbsp;\r\n        <button type=\"button\" class=\"btn btn-danger\" (click)=\"deleteBook(mybook.id)\">verwijder</button>\r\n      </td>\r\n    </tr>\r\n    </tbody>\r\n  </table>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -300,7 +299,6 @@ var BookComponent = (function () {
     };
     BookComponent.prototype.findAllBooks = function () {
         var _this = this;
-        console.log('BookComponent findAllBooks() methode');
         this.bookservice.findAllBooks().subscribe(function (data) {
             for (var _i = 0, data_1 = data; _i < data_1.length; _i++) {
                 var b = data_1[_i];
@@ -312,7 +310,6 @@ var BookComponent = (function () {
     };
     BookComponent.prototype.searchBooks = function () {
         var _this = this;
-        console.log('BookComponent searchBooks() methode');
         this.bookservice.searchBooks(this.keyword).subscribe(function (data) {
             _this.books = [];
             for (var _i = 0, data_2 = data; _i < data_2.length; _i++) {
@@ -324,7 +321,6 @@ var BookComponent = (function () {
         return this.books;
     };
     BookComponent.prototype.editBook = function (book) {
-        console.log('BookComponent editBook() methode');
         this.bookservice.editBook(book);
         this.router.navigateByUrl('/edit');
     };
@@ -506,33 +502,25 @@ var BookService = (function () {
         this.http = http;
     }
     BookService.prototype.addBook = function (book) {
-        console.log('Service: addBook() methode');
         return this.http.post(URL, book);
     };
     BookService.prototype.findAllBooks = function () {
-        console.log('Service: findAllBooks() methode');
         return this.http.get(URL).map(function (value) { return value.json(); });
     };
     BookService.prototype.searchBooks = function (keyword) {
         if (keyword == null || keyword === '') {
             return this.findAllBooks();
         }
-        console.log('Service: searchBooks() methode');
         return this.http.get(SEARCH_URL + keyword).map(function (value) { return value.json(); });
     };
     BookService.prototype.editBook = function (book) {
-        // console.log('Service: editBook() methode');
-        // return this.http.post(UPDATE_URL, book);
-        console.log('Service: editBook() methode');
         this.selectedBook = book;
         return this.selectedBook;
     };
     BookService.prototype.deleteBook = function (id) {
-        console.log('Service: deleteBook() methode');
         return this.http.delete(URL + '/' + id);
     };
     BookService.prototype.detailBook = function (book) {
-        console.log('Service: detailBook() methode');
         this.selectedBook = book;
         return this.selectedBook;
     };
